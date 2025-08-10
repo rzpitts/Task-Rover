@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Ensure responsive scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Rover – Board</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Main application wrapper. The `dark` class toggles dark mode via JavaScript -->
+    <div id="appWrapper" class="app">
+      <!-- Header: app name/logo on the left, actions on the right -->
+      <header class="app-header">
+        <h1 class="app-title">Task Rover</h1>
+        <div class="header-actions">
+          <!-- Stats button navigates to the stats page -->
+          <button id="statsBtn" class="icon-button" aria-label="View stats">📊</button>
+          <!-- Theme toggle (populated with sun/moon icon via JS) -->
+          <button id="themeToggle" class="icon-button" aria-label="Toggle dark mode"></button>
+          <!-- Sign out button -->
+          <button id="signOutBtn" class="icon-button" aria-label="Sign out">↩️</button>
+        </div>
+      </header>
+
+      <!-- Quick add bar: add tasks via a single input -->
+      <div class="quick-add-bar">
+        <input
+          type="text"
+          id="quickAddInput"
+          class="quick-add-input"
+          placeholder="Add a task…"
+          aria-label="Add a new task"
+        />
+        <button id="quickAddBtn" class="primary-button" aria-label="Add task">Add</button>
+      </div>
+
+      <!-- Kanban board container -->
+      <main id="board" class="board"></main>
+
+      <!-- Toast/snackbar container for undo notifications -->
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <!-- Modal overlay backdrop -->
+      <div id="overlay" class="modal-overlay hidden"></div>
+
+      <!-- Bottom sheet for adding/editing a task -->
+      <div id="taskModal" class="task-modal hidden" role="dialog" aria-modal="true">
+        <form id="taskForm" class="task-form">
+          <h2 id="modalTitle" class="modal-title">Add Task</h2>
+          <!-- Title input -->
+          <div class="form-group">
+            <label for="taskTitleInput" class="form-label">Title</label>
+            <input
+              type="text"
+              id="taskTitleInput"
+              class="form-input"
+              required
+              maxlength="100"
+            />
+          </div>
+          <!-- Owner input -->
+          <div class="form-group">
+            <label for="taskOwnerInput" class="form-label">Who owns this?</label>
+            <input
+              type="text"
+              id="taskOwnerInput"
+              class="form-input"
+              placeholder="Owner name"
+            />
+          </div>
+          <!-- Due date and priority row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskDueInput" class="form-label">Due</label>
+              <input
+                type="date"
+                id="taskDueInput"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <span class="form-label">Priority</span>
+              <div id="priorityOptions" class="priority-options">
+                <!-- No priority option -->
+                <button type="button" data-priority="" aria-label="No priority">—</button>
+                <!-- High priority (one exclamation point) -->
+                <button type="button" data-priority="high" aria-label="High priority">!</button>
+                <!-- Medium priority (two exclamation points) -->
+                <button type="button" data-priority="medium" aria-label="Medium priority">!!</button>
+                <!-- Low priority (three exclamation points) -->
+                <button type="button" data-priority="low" aria-label="Low priority">!!!</button>
+              </div>
+            </div>
+          </div>
+          <!-- Column selector -->
+          <div class="form-group">
+            <label for="taskStatusInput" class="form-label">Column</label>
+            <select id="taskStatusInput" class="form-input">
+              <option value="todo">To Do</option>
+              <option value="doing">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <!-- Actions row: delete (when editing) and save/cancel -->
+          <div class="modal-actions">
+            <button
+              type="button"
+              id="deleteTaskBtn"
+              class="destructive-button"
+            >Delete</button>
+            <div class="actions-right">
+              <button
+                type="button"
+                id="cancelTaskBtn"
+                class="secondary-button"
+              >Cancel</button>
+              <button type="submit" id="saveTaskBtn" class="primary-button">
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="board.js"></script>
+  </body>
+</html>

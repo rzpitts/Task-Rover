@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/21703573/README.md)
 # Task Rover
 
 Task Rover is a minimalist, mobile‑first task management application inspired by classic kanban boards.  It is designed to be intuitive to use on a phone but scales gracefully to tablets and desktops.  Tasks are grouped into three columns — **To Do**, **In Progress**, and **Done** — and can be created, edited, moved between columns and marked complete with just a couple of taps or clicks.

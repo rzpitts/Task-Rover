@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Rover – Sign In</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="appWrapper" class="app">
+      <!-- Header with app name and theme toggle -->
+      <header class="app-header">
+        <h1 class="app-title">Task Rover</h1>
+        <div class="header-actions">
+          <button id="themeToggle" class="icon-button" aria-label="Toggle dark mode"></button>
+        </div>
+      </header>
+      <!-- Sign in form content -->
+      <main class="signin-page">
+        <form id="signinForm" class="signin-form">
+          <label for="emailInput" class="form-label">Email</label>
+          <input
+            type="email"
+            id="emailInput"
+            class="form-input"
+            placeholder="you@example.com"
+            required
+          />
+          <button type="submit" id="signinBtn" class="primary-button">Send link</button>
+        </form>
+        <div id="signinMessage" class="signin-message" role="status" aria-live="polite"></div>
+      </main>
+    </div>
+    <script src="signin.js"></script>
+  </body>
+</html>
