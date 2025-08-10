@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Make sure the UI scales nicely on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Rover</title>
+    <!-- Link to our stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Application wrapper. The `dark` class on this element toggles the dark theme. -->
+    <div id="appWrapper" class="app">
+      <!-- Header: contains the app name/logo and an overflow menu for settings -->
+      <header class="app-header">
+        <h1 class="app-title">Task Rover</h1>
+        <div class="header-actions">
+          <!-- Theme toggle button. Will be populated with appropriate icon/text via JS -->
+          <button id="themeToggle" class="icon-button" aria-label="Toggle dark mode"></button>
+          <!-- Placeholder for additional menu items (auth, settings). Not implemented here. -->
+        </div>
+      </header>
+
+      <!-- Quick add bar. Sticky under the header on mobile. -->
+      <div class="quick-add-bar">
+        <input
+          type="text"
+          id="quickAddInput"
+          class="quick-add-input"
+          placeholder="Add a task…"
+          aria-label="Add a new task"
+        />
+        <button id="quickAddBtn" class="primary-button" aria-label="Add task">Add</button>
+      </div>
+
+      <!-- Main board container. Holds the three task columns. -->
+      <main id="board" class="board"></main>
+
+      <!-- Toast container for undo/snackbar messages -->
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <!-- Modal overlay for bottom sheet and modals -->
+      <div id="overlay" class="modal-overlay hidden"></div>
+
+      <!-- Bottom sheet for adding/editing a task -->
+      <div id="taskModal" class="task-modal hidden" role="dialog" aria-modal="true">
+        <form id="taskForm" class="task-form">
+          <h2 id="modalTitle" class="modal-title">Add Task</h2>
+          <div class="form-group">
+            <label for="taskTitleInput" class="form-label">Title</label>
+            <input
+              type="text"
+              id="taskTitleInput"
+              class="form-input"
+              required
+              maxlength="100"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskDueInput" class="form-label">Due</label>
+              <input
+                type="date"
+                id="taskDueInput"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="taskPriorityInput" class="form-label">Priority</label>
+              <select id="taskPriorityInput" class="form-input">
+                <option value="">None</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="taskStatusInput" class="form-label">Column</label>
+            <select id="taskStatusInput" class="form-input">
+              <option value="todo">To Do</option>
+              <option value="doing">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button
+              type="button"
+              id="deleteTaskBtn"
+              class="destructive-button"
+            >Delete</button>
+            <div class="actions-right">
+              <button
+                type="button"
+                id="cancelTaskBtn"
+                class="secondary-button"
+              >Cancel</button>
+              <button type="submit" id="saveTaskBtn" class="primary-button">
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Include our JavaScript -->
+    <script src="app.js"></script>
+  </body>
+</html>
